@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nebula.mooc.ssoserver.dao.UserDao">
+
+    <resultMap id="UserInfoMap" type="UserInfo">
+        <!-- property是实体类属性，column是表列名 -->
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+        <result property="nickName" column="NICKNAME" jdbcType="VARCHAR"/>
+        <result property="headUrl" column="HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="major" column="MAJOR" jdbcType="VARCHAR"/>
+        <result property="sex" column="SEX" jdbcType="INTEGER"/>
+        <result property="age" column="AGE" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="login" resultMap="UserInfoMap" parameterType="LoginUser">
+        select ID, NICKNAME, HEAD_URL, EMAIL, MAJOR, SEX, AGE
+        from user
+        where EMAIL = #{username}
+          and PASSWORD = #{password}
+        limit 1
+    </select>
+
+    <insert id="register" parameterType="LoginUser">
+        insert into user(EMAIL, PASSWORD, NICKNAME)
+        values (#{username}, #{password}, #{nickname})
+    </insert>
+
+    <update id="resetPassword" parameterType="LoginUser">
+        update user
+        set PASSWORD=#{password}
+        where EMAIL = #{username}
+    </update>
+
+    <select id="checkUserExists" parameterType="String" resultType="boolean">
+        select ifnull((select 1 from user where EMAIL = #{email} limit 1), 0)
+    </select>
+
+    <update id="updateUser" parameterType="UserInfo">
+        update user
+        set NICKNAME=#{nickName},
+            MAJOR = #{major},
+            AGE = #{age},
+            SEX = #{sex},
+            HEAD_URL = #{headUrl}
+        where ID = #{id}
+    </update>
+
+</mapper>

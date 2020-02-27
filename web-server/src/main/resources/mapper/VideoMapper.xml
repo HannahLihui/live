@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nebula.mooc.webserver.dao.VideoDao">
+
+    <resultMap id="videoMap" type="Video">
+        <result property="filename" column="FILENAME" jdbcType="VARCHAR"/>
+        <result property="videoUrl" column="URL" jdbcType="VARCHAR"/>
+        <result property="isupload" column="ISUPLOAD" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <select id="getVideoList" resultMap="videoMap">
+        select FILENAME, URL, ISUPLOAD
+        from video
+        where USER_ID = #{userId}
+    </select>
+
+    <insert id="addVideo" parameterType="Video">
+        insert into video (USER_ID, FILENAME)
+        VALUES (#{userId}, #{filename})
+    </insert>
+
+    <update id="updateVideo" parameterType="Video">
+        update video
+        set URL      = #{videoUrl},
+            ISUPLOAD = 1
+        where USER_ID = #{userId}
+          and ISUPLOAD = 0
+          and FILENAME = #{filename}
+    </update>
+
+    <delete id="removeVideo" parameterType="Video">
+        delete
+        from video
+        where USER_ID = #{userId}
+        <choose>
+            <when test="videoUrl != null">
+                and ISUPLOAD = 1 and URL = #{videoUrl}
+            </when>
+            <otherwise>
+                and ISUPLOAD = 0 and FILENAME = #{filename}
+            </otherwise>
+        </choose>
+    </delete>
+
+</mapper>

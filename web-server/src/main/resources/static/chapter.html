@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>章节</title>
+    <link rel="icon" href="res/logo.ico" type="image/x-icon">
+    <script src="js/jquery.js"></script>
+    <script src="js/server.js"></script>
+    <link href="css/page.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/toastr.css">
+    <script src="js/toastr.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/chapter.css">
+    <meta name="referrer" content="no-referrer">
+
+</head>
+
+<body>
+<div id="background" class="filter">
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="chapter-body">
+    <div class="chapter-top">
+        <div class="chapter-top-left">
+            <img class="chapter-img">
+        </div>
+
+
+        <div class="chapter-top-right">
+            <div class="chapter-top-right-top">
+                <h3 class="course-title">
+                </h3>
+                <div class="course-content">
+                </div>
+            </div>
+            <div class="chapter-top-right-bottom">
+                <div class="chapter-top-right-bottom-left">
+                    <img class="course-star">
+                    <span class="course-starnum"></span>
+                    <img class="course-like">
+                    <span class="course-likenum"></span>
+                </div>
+                <div class="chapter-top-right-bottom-right">
+                    <img class="course-head">
+                    <h1 class="course-username"></h1>
+                    <span class="course-time"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="chapter-section">
+        <hr>
+        <div class="chapter-list">
+            <div class="course-chapter">
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="course-comment">
+    <div class="container">
+        <div class="commentbox">
+            <textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+            <div class="btn btn-info pull-right" id="comment">评论</div>
+        </div>
+        <div class="comment-list">
+        </div>
+    </div>
+    <div class="page" id="page"></div>
+</div>
+
+</div>
+
+
+<script src="js/background.js"></script>
+<script src="js/chapter.js"></script>
+</body>
+
+</html>

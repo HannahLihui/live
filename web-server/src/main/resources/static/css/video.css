@@ -1,0 +1,353 @@
+html, body {
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.container {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    background-repeat: no-repeat;
+    background: linear-gradient(to bottom, #009 0%, #1E9FFF 100%);
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+.filter {
+    background: #009;
+    animation: colorChange 30s ease-in-out infinite;
+    animation-fill-mode: both;
+    mix-blend-mode: overlay;
+    z-index: -2;
+}
+
+@keyframes colorChange {
+    0%, 100% {
+        opacity: .2;
+    }
+    50% {
+        opacity: .7;
+    }
+}
+
+.top {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 0 20px;
+}
+
+.title-top {
+    width: 70%;
+    height: 80px;
+}
+
+#title {
+    font-size: 30px;
+    height: 50px;
+    line-height: 50px;
+    /*width: 100%;*/
+    text-align: left;
+}
+
+.title {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.title p {
+    margin: 0;
+    float: left;
+    line-height: 50px;
+    height: 50px;
+}
+
+#teacher {
+    width: 30%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.teacher-pic {
+    width: 40px;
+    height: 40px;
+    margin: 20px 0;
+}
+
+#tc-pic {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#teacher-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    width: 200px;
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    margin: 20px 10px;
+}
+
+
+#introduction {
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    text-align: left;
+}
+
+
+.watcharea {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 10px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+
+/*设置显示面板*/
+#playarea {
+    float: left;
+    position: relative;
+}
+
+#myplayer, #showWords, .openFlash {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#showWords {
+    z-index: 99;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+/*设置输入框*/
+.input-top {
+    width: 40%;
+    height: 38px;
+    margin: 5px auto;
+    border-radius: 5px;
+    border: 0.1em solid rgba(27, 6, 41, 0.41);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-left: 5px;
+}
+
+#word {
+    width: auto;
+    height: 40px;
+    border: none;
+    outline: none;
+    margin: 0;
+    font-size: 20px;
+    line-height: 40px;
+    white-space: nowrap;
+    text-align: left;
+    overflow: hidden;
+}
+
+.sendarea {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+}
+
+
+#textArea {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+#textArea::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 0 12px 12px 0;
+}
+
+#textArea::-webkit-scrollbar-track {
+    border-radius: 0 12px 12px 0;
+}
+
+#textArea::-webkit-scrollbar-thumb {
+    background: #61B6EB;
+    height: 10px;
+    border-radius: 12px;
+}
+
+#textArea::-webkit-scrollbar-thumb:hover {
+    background: #61B6EB;
+}
+
+#textArea::-webkit-scrollbar-corner {
+    background: #61B6EB;
+}
+
+#textArea span:hover {
+    opacity: 0.5;
+    background-color: whitesmoke;
+}
+
+#textArea span:active {
+    background-color: rgba(27, 6, 41, 0.3);
+}
+
+
+#textArea span {
+    padding: 0 10px;
+    font-size: 16px;
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    height: 30px;
+    width: 100%;
+    float: left;
+    text-align: left;
+}
+
+
+/*设置按钮*/
+.sendarea input, #fontsize, #fontposition {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px auto;
+    box-shadow: 2px 2px 2px #ccc;
+    height: 40px;
+    font-size: 0.95em;
+    outline: none;
+    width: 10%;
+    cursor: pointer;
+}
+
+.sendarea input:hover, #fontsize:hover, #fontposition:hover {
+    border-color: #007bff;
+}
+
+#move_on {
+    margin-left: 20px;
+}
+
+#addWords {
+    margin-right: 20px;
+}
+
+.emoji-top {
+    height: 30px;
+    width: 30px;
+    margin: 5px 10px;
+    float: right;
+    cursor: pointer;
+}
+
+#emoji {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.emoji-menu {
+    width: 340px;
+    height: 160px;
+    background-color: whitesmoke;
+    position: absolute;
+    bottom: 60px;
+    right: 0px;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.emoji-menu::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 12px;
+}
+
+.emoji-menu::-webkit-scrollbar-track {
+    border-radius: 12px;
+}
+
+.emoji-menu::-webkit-scrollbar-thumb {
+    background: #61B6EB;
+    border-radius: 12px;
+}
+
+.emoji-menu::-webkit-scrollbar-thumb:hover {
+    background: #61B6EB;
+}
+
+.emoji-menu::-webkit-scrollbar-corner {
+    background: #61B6EB;
+}
+
+
+
+
+

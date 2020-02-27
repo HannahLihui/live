@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帖子</title>
+    <link rel="icon" href="res/logo.ico" type="image/x-icon">
+    <meta name="referrer" content="no-referrer">
+</head>
+<script src="js/jquery.js"></script>
+<script src="js/server.js"></script>
+<link href="css/page.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="css/toastr.css" rel="stylesheet" type="text/css">
+<script src="js/toastr.js"></script>
+<link href="css/post.css" rel="stylesheet" type="text/css">
+
+
+<body>
+<div id="background" class="filter">
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="post-head">
+    <div class="post">
+        <div class="top">
+            <img id="headimg">
+            <div class="top-right">
+                <h4 class="nickName"></h4>
+                <div class="post-time"></div>
+                <p id="likenum"></p>
+                <img id="like">
+                <p id="starnum"></p>
+                <img id="post-star">
+            </div>
+        </div>
+
+        <div class="bottom">
+            <hr>
+            <h3 class="post-title"></h3>
+            <div class="post-content"></div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="comment-body">
+    <div class="container">
+        <div class="commentbox">
+            <textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+            <div class="btn btn-info pull-right" id="comment">评论</div>
+        </div>
+        <div class="comment-list">
+
+        </div>
+    </div>
+
+
+    <div class="page" id="page"></div>
+</div>
+
+<script src="js/post.js"></script>
+<script src="js/background.js"></script>
+</body>
+
+</html>

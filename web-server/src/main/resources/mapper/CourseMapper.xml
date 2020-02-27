@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nebula.mooc.webserver.dao.CourseDao">
+
+    <resultMap id="CourseMap" type="Course">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="userId" column="USER_ID" jdbcType="BIGINT"/>
+        <result property="kindName" column="KIND_NAME" jdbcType="VARCHAR"/>
+        <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+        <result property="introduction" column="INTRODUCTION" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+        <result property="like" column="COURSE_LIKE" jdbcType="INTEGER"/>
+        <result property="star" column="COURSE_STAR" jdbcType="INTEGER"/>
+        <result property="courseHeadUrl" column="COURSE_HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="userNickName" column="USER_NICKNAME" jdbcType="VARCHAR"/>
+        <result property="userHeadUrl" column="USER_HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="ifLike" column="IF_LIKE" jdbcType="BOOLEAN"/>
+        <result property="ifStar" column="IF_STAR" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <resultMap id="CourseChapterMap" type="CourseChapter">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="courseId" column="COURSE_ID" jdbcType="BIGINT"/>
+        <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="CourseSectionMap" type="CourseSection">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="chapterId" column="CHAPTER_ID" jdbcType="BIGINT"/>
+        <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+        <result property="introduction" column="INTRODUCTION" jdbcType="VARCHAR"/>
+        <result property="videoUrl" column="VIDEO_URL" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="CourseCommentMap" type="CourseComment">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="userId" column="USER_ID" jdbcType="BIGINT"/>
+        <result property="courseId" column="COURSE_ID" jdbcType="BIGINT"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="star" column="STAR" jdbcType="INTEGER"/>
+        <result property="userNickName" column="USER_NICKNAME" jdbcType="VARCHAR"/>
+        <result property="userHeadUrl" column="USER_HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="ifStar" column="IF_STAR" jdbcType="BOOLEAN"/>
+        <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="CourseSectionCommentMap" type="CourseSectionComment">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="userId" column="USER_ID" jdbcType="BIGINT"/>
+        <result property="sectionId" column="SECTION_ID" jdbcType="BIGINT"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="star" column="STAR" jdbcType="INTEGER"/>
+        <result property="userNickName" column="USER_NICKNAME" jdbcType="VARCHAR"/>
+        <result property="userHeadUrl" column="USER_HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="ifStar" column="IF_STAR" jdbcType="BOOLEAN"/>
+        <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="CourseSectionCommentReplyMap" type="CourseSectionCommentReply">
+        <id property="id" column="ID" jdbcType="BIGINT"/>
+        <result property="commentId" column="COMMENT_ID" jdbcType="BIGINT"/>
+        <result property="fromId" column="FROM_ID" jdbcType="BIGINT"/>
+        <result property="toId" column="TO_ID" jdbcType="BIGINT"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="fromUserNickName" column="FROM_USER_NICKNAME" jdbcType="VARCHAR"/>
+        <result property="fromUserHeadUrl" column="FROM_USER_HEAD_URL" jdbcType="VARCHAR"/>
+        <result property="toUserNickName" column="TO_USER_NICKNAME" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getCourseTotal" resultType="int">
+        select NUM
+        from number
+        where TYPE = 2
+          and KIND_NAME = #{kindName}
+    </select>
+
+    <select id="getCourseList" resultMap="CourseMap">
+        select
+        course.ID,
+        course.KIND_NAME,
+        course.TITLE,
+        course.INTRODUCTION,
+        course.CREATED_TIME,
+        course.COURSE_LIKE,
+        course.COURSE_STAR,
+        course.COURSE_HEAD_URL,
+        user.ID USER_ID,
+        user.NICKNAME USER_NICKNAME,
+        user.HEAD_URL USER_HEAD_URL
+        from
+        (SELECT course.ID,
+        course.KIND_NAME KIND_NAME,
+        course.TITLE TITLE,
+        course.INTRODUCTION INTRODUCTION,
+        course.CREATED_TIME CREATED_TIME,
+        course.LIKE COURSE_LIKE,
+        course.STAR COURSE_STAR,
+        course.HEAD_URL COURSE_HEAD_URL,
+        course.USER_ID
+        FROM course
+        WHERE course.ID &lt;= (SELECT course.ID
+        FROM course
+        <if test="kindName != 'TOTAL'">
+            where KIND_NAME = #{kindName}
+        </if>
+        ORDER BY ID DESC
+        limit #{offset},1)
+        <if test="kindName != 'TOTAL'">
+            and KIND_NAME = #{kindName}
+        </if>
+        ORDER BY course.ID DESC
+        LIMIT #{pageSize}) course left JOIN user ON course.USER_ID = user.ID
+    </select>
+
+    <select id="getLikeCourse" resultMap="CourseMap">
+        select course.ID,
+               course.KIND_NAME,
+               course.TITLE,
+               course.INTRODUCTION,
+               course.CREATED_TIME,
+               course.COURSE_LIKE,
+               course.COURSE_STAR,
+               course.COURSE_HEAD_URL,
+               user.ID       USER_ID,
+               user.NICKNAME USER_NICKNAME,
+               user.HEAD_URL USER_HEAD_URL
+        from (SELECT course.ID,
+                     course.KIND_NAME    KIND_NAME,
+                     course.TITLE        TITLE,
+                     course.INTRODUCTION INTRODUCTION,
+                     course.CREATED_TIME CREATED_TIME,
+                     course.LIKE         COURSE_LIKE,
+                     course.STAR         COURSE_STAR,
+                     course.HEAD_URL     COURSE_HEAD_URL,
+                     course.USER_ID
+              FROM course
+                       inner join course_like on course_like.USER_ID = #{userId} and course_like.COURSE_ID = course.ID
+              WHERE course.ID &lt;= (SELECT t1.ID
+                                     FROM (select course.ID
+                                           from course
+                                                    inner join course_like
+                                                               on course_like.USER_ID = #{userId} and course_like.COURSE_ID = course.ID) t1
+                                     ORDER BY t1.ID DESC
+                                     limit #{offset},1)
+              ORDER BY course.ID DESC
+              LIMIT #{pageSize}) course
+                 left JOIN user ON course.USER_ID = user.ID
+    </select>
+
+    <select id="getHotCourseList" resultMap="CourseMap">
+        SELECT course.ID           ID,
+               course.KIND_NAME    KIND_NAME,
+               course.TITLE        TITLE,
+               course.INTRODUCTION INTRODUCTION,
+               course.CREATED_TIME CREATED_TIME,
+               course.LIKE         COURSE_LIKE,
+               course.STAR         COURSE_STAR,
+               course.HEAD_URL     COURSE_HEAD_URL,
+               user.ID             USER_ID,
+               user.NICKNAME       USER_NICKNAME,
+               user.HEAD_URL       USER_HEAD_URL,
+               SUM(SCORE)          SUM_SCORE
+        FROM course_score
+                 INNER JOIN ( course INNER JOIN user ON course.USER_ID = user.ID ) ON course.ID = course_score.COURSE_ID
+        GROUP BY COURSE_ID
+        ORDER BY SUM_SCORE DESC
+        LIMIT #{pageSize}
+    </select>
+
+    <select id="getCourse" resultMap="CourseMap">
+        select course.ID,
+               course.KIND_NAME,
+               course.TITLE,
+               course.INTRODUCTION,
+               course.CREATED_TIME,
+               course.LIKE                       COURSE_LIKE,
+               course.STAR                       COURSE_STAR,
+               course.HEAD_URL                   COURSE_HEAD_URL,
+               user.ID                           USER_ID,
+               user.NICKNAME                     USER_NICKNAME,
+               user.HEAD_URL                     USER_HEAD_URL,
+               !isnull(course_like.CREATED_TIME) IF_LIKE,
+               !isnull(course_star.CREATED_TIME) IF_STAR
+        from course
+                 inner join user on course.USER_ID = user.ID
+                 left join course_like on course_like.USER_ID = #{userId}
+            and course_like.COURSE_ID = course.ID
+                 left join course_star on course_star.USER_ID = #{userId}
+            and course_star.COURSE_ID = course.ID
+        where course.ID = #{courseId}
+        limit 1
+    </select>
+
+    <select id="getCourseChapterList" resultMap="CourseChapterMap">
+        select ID, COURSE_ID, TITLE
+        from course_chapter
+        where COURSE_ID = #{courseId}
+        order by ID
+    </select>
+
+    <select id="getCourseSectionList" resultMap="CourseSectionMap">
+        select course_section.ID,
+               course_section.CHAPTER_ID,
+               course_section.TITLE
+        from course_section
+        where CHAPTER_ID = #{chapterId}
+        order by ID
+    </select>
+
+    <select id="getCourseCommentTotal" resultType="int">
+        select count(1)
+        from course_comment
+        where COURSE_ID = #{courseId}
+    </select>
+
+    <select id="getCourseCommentList" resultMap="CourseCommentMap">
+        select course_comment.ID,
+               course_comment.COURSE_ID,
+               course_comment.CONTENT,
+               course_comment.STAR,
+               course_comment.CREATED_TIME,
+               user.ID                                   USER_ID,
+               user.NICKNAME                             USER_NICKNAME,
+               user.HEAD_URL                             USER_HEAD_URL,
+               !isnull(course_comment_star.CREATED_TIME) IF_STAR
+        from course_comment
+                 inner join user on course_comment.USER_ID = user.ID
+                 left join course_comment_star on course_comment_star.USER_ID = #{userId}
+            and course_comment_star.COMMENT_ID = course_comment.ID
+        where course_comment.ID >= (select ID
+                                    from course_comment
+                                    where course_comment.COURSE_ID = #{courseId}
+                                    order by ID
+                                    limit #{offset},1)
+          and course_comment.COURSE_ID = #{courseId}
+        order by ID
+        limit #{pageSize}
+    </select>
+
+    <select id="getCourseSection" resultMap="CourseSectionMap">
+        select course_section.ID,
+               course_section.CHAPTER_ID,
+               course_section.TITLE,
+               course_section.INTRODUCTION,
+               course_section.VIDEO_URL
+        from course_section
+        where course_section.ID = #{sectionId}
+    </select>
+
+    <select id="getCourseSectionCommentTotal" resultType="int">
+        select count(1)
+        from course_section_comment
+        where SECTION_ID = #{sectionId}
+    </select>
+
+    <select id="getCourseSectionCommentList" resultMap="CourseSectionCommentMap">
+        select course_section_comment.ID,
+               course_section_comment.SECTION_ID,
+               course_section_comment.CONTENT,
+               course_section_comment.STAR,
+               course_section_comment.CREATED_TIME,
+               user.ID                                           USER_ID,
+               user.NICKNAME                                     USER_NICKNAME,
+               user.HEAD_URL                                     USER_HEAD_URL,
+               !isnull(course_section_comment_star.CREATED_TIME) IF_STAR
+        from course_section_comment
+                 inner join user on course_section_comment.USER_ID = user.ID
+                 left join course_section_comment_star on course_section_comment_star.USER_ID = #{userId}
+            and course_section_comment_star.COMMENT_ID = course_section_comment.ID
+        where course_section_comment.ID >= (select ID
+                                            from course_section_comment
+                                            where course_section_comment.SECTION_ID = #{sectionId}
+                                            order by ID
+                                            limit #{offset},1)
+          and course_section_comment.SECTION_ID = #{sectionId}
+        order by ID
+        limit #{pageSize}
+    </select>
+
+    <select id="getCourseSectionCommentReplyList" resultMap="CourseSectionCommentReplyMap">
+        select course_section_comment_reply.ID,
+               course_section_comment_reply.COMMENT_ID,
+               course_section_comment_reply.CONTENT,
+               course_section_comment_reply.FROM_ID,
+               course_section_comment_reply.TO_ID,
+               course_section_comment_reply.CREATED_TIME,
+               user1.NICKNAME FROM_USER_NICKNAME,
+               user1.HEAD_URL FROM_USER_HEAD_URL,
+               user2.NICKNAME TO_USER_NICKNAME
+        from course_section_comment_reply
+                 inner join user user1 on course_section_comment_reply.FROM_ID = user1.ID
+                 inner join user user2 on course_section_comment_reply.TO_ID = user2.ID
+        where course_section_comment_reply.COMMENT_ID = #{commentId}
+    </select>
+
+    <select id="getLastInsertId" resultType="long">
+        SELECT LAST_INSERT_ID();
+    </select>
+
+
+    <insert id="newCourse" parameterType="Course">
+        insert into course (USER_ID, KIND_NAME, TITLE, INTRODUCTION, HEAD_URL)
+        values (#{userId}, #{kindName}, #{title}, #{introduction}, #{courseHeadUrl})
+    </insert>
+
+    <insert id="newCourseChapter" parameterType="CourseChapter">
+        insert into course_chapter (COURSE_ID, TITLE)
+        values (#{courseId}, #{title})
+    </insert>
+
+    <insert id="newCourseSection" parameterType="CourseSection">
+        insert into course_section (CHAPTER_ID, TITLE, INTRODUCTION, VIDEO_URL)
+        values (#{chapterId}, #{title}, #{introduction}, #{videoUrl})
+    </insert>
+
+    <update id="increaseNum">
+        update number
+        set NUM = NUM + 1
+        where TYPE = 2
+          and KIND_NAME = #{kindName};
+        update number
+        set NUM = NUM + 1
+        where TYPE = 2
+          and KIND_NAME = 'TOTAL'
+    </update>
+
+    <insert id="courseStar">
+        insert
+        into course_star (USER_ID, COURSE_ID)
+        values (#{userId}, #{courseId})
+    </insert>
+
+    <delete id="delCourseStar">
+        delete
+        from course_star
+        where USER_ID = #{userId}
+          and COURSE_ID = #{courseId}
+    </delete>
+
+    <update id="addCourseStar">
+        update course
+        set STAR=STAR + 1
+        where ID = #{courseId}
+    </update>
+
+    <update id="subCourseStar">
+        update course
+        set STAR=STAR - 1
+        where ID = #{courseId}
+    </update>
+
+    <select id="ifStar" resultType="java.lang.Integer">
+        select ifnull((select 1 from course_star where USER_ID = #{userId} and COURSE_ID = #{courseId} limit 1), 0)
+    </select>
+
+    <insert id="courseLike">
+        insert
+        into course_like (USER_ID, COURSE_ID)
+        values (#{userId}, #{courseId})
+    </insert>
+
+    <delete id="delCourseLike">
+        delete
+        from course_like
+        where USER_ID = #{userId}
+          and COURSE_ID = #{courseId}
+    </delete>
+
+    <update id="addCourseLike">
+        update course
+        set course.LIKE=course.LIKE + 1
+        where ID = #{courseId}
+    </update>
+
+    <update id="subCourseLike">
+        update course
+        set course.LIKE=course.LIKE - 1
+        where ID = #{courseId}
+    </update>
+
+    <select id="ifLike" resultType="java.lang.Integer">
+        select ifnull((select 1 from course_like where USER_ID = #{userId} and COURSE_ID = #{courseId} limit 1), 0)
+    </select>
+
+    <insert id="courseComment">
+        insert into course_comment(USER_ID, COURSE_ID, CONTENT)
+        values (#{userId}, #{courseId}, #{content})
+    </insert>
+
+    <delete id="delCourseComment">
+        delete
+        from course_comment
+        where USER_ID = #{userId}
+          and ID = #{id}
+    </delete>
+
+    <insert id="courseCommentStar">
+        insert into course_comment_star(USER_ID, COMMENT_ID)
+        values (#{userId}, #{commentId})
+    </insert>
+
+    <delete id="delCourseCommentStar">
+        delete
+        from course_comment_star
+        where USER_ID = #{userId}
+          and COMMENT_ID = #{commentId}
+    </delete>
+
+    <update id="addCourseCommentStar">
+        update course_comment
+        set course_comment.STAR=course_comment.STAR + 1
+        where ID = #{commentId}
+    </update>
+
+    <update id="subCourseCommentStar">
+        update course_comment
+        set course_comment.STAR=course_comment.STAR - 1
+        where ID = #{commentId}
+    </update>
+
+    <select id="ifCourseCommentStar" resultType="java.lang.Integer">
+        select ifnull((select 1
+                       from course_comment_star
+                       where USER_ID = #{userId}
+                         and COMMENT_ID = #{commentId}
+                       limit 1), 0)
+    </select>
+
+
+    <insert id="sectionComment">
+        insert into course_section_comment(USER_ID, SECTION_ID, CONTENT)
+        values (#{userId}, #{sectionId}, #{content})
+    </insert>
+
+    <delete id="delSectionComment">
+        delete
+        from course_section_comment
+        where USER_ID = #{userId}
+          and ID = #{id}
+    </delete>
+
+    <insert id="sectionCommentStar">
+        insert into course_section_comment_star(USER_ID, COMMENT_ID)
+        values (#{userId}, #{commentId})
+    </insert>
+
+    <delete id="delSectionCommentStar">
+        delete
+        from course_section_comment_star
+        where USER_ID = #{userId}
+          and COMMENT_ID = #{commentId}
+    </delete>
+
+    <update id="addSectionCommentStar">
+        update course_section_comment
+        set course_section_comment.STAR=course_section_comment.STAR + 1
+        where ID = #{commentId}
+    </update>
+
+    <update id="subSectionCommentStar">
+        update course_section_comment
+        set course_section_comment.STAR=course_section_comment.STAR - 1
+        where ID = #{commentId}
+    </update>
+
+    <select id="ifSectionCommentStar" resultType="java.lang.Integer">
+        select ifnull((select 1
+                       from course_section_comment_star
+                       where USER_ID = #{userId}
+                         and COMMENT_ID = #{commentId}
+                       limit 1), 0)
+    </select>
+
+    <insert id="sectionCommentReply">
+        insert into course_section_comment_reply(COMMENT_ID, CONTENT, FROM_ID, TO_ID)
+        values (#{commentId}, #{content}, #{fromId}, #{toId})
+    </insert>
+
+    <delete id="delSectionCommentReply">
+        delete
+        from course_section_comment_reply
+        where ID = #{id}
+          and FROM_ID = #{fromId}
+    </delete>
+
+
+    <select id="lastReplyId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID();
+    </select>
+
+
+    <select id="likeCourseTotal" resultType="java.lang.Integer">
+        select count(*)
+        from course
+                 inner join course_like on course_like.USER_ID = #{userId} and course_like.COURSE_ID = course.ID
+    </select>
+
+</mapper>

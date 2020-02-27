@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: core
+  redis:
+    database: 0

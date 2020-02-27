@@ -1,0 +1,140 @@
+html {
+    overflow-y: scroll;
+}
+body {
+    text-align: center;
+}
+
+.tab-wrap1, .tab-wrap2 {
+    margin: 0 auto;
+    height: 40px;
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    line-height: 40px;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+}
+
+.tab-wrap2 {
+    margin-top: 30px;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.list {
+    position: relative;
+    letter-spacing: 0;
+    list-style: none;
+    display: inline-block;
+}
+
+#list2 {
+    margin-left: 80px;
+}
+
+.list a {
+    margin-left: 22px;
+    margin-right: 22px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.list li {
+    float: left;
+    margin-left: 20px;
+    margin-top: -1px;
+}
+
+.selected {
+    color: #ffffff;
+    background-color: #1E9FFF;
+}
+
+.unselected {
+    color: black;
+}
+
+li {
+    cursor: pointer;
+}
+
+.course-list {
+    margin-top: 30px;
+}
+
+.one-course {
+    margin: 0 auto;
+    width: 1000px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+}
+
+.course-info-left {
+    width: 20%;
+    height: 100%;
+}
+
+.course-info-center {
+    width: 60%;
+    height: 100%;
+}
+
+.course-info-right {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+}
+
+.course-introduce {
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+    overflow: hidden;
+    height: 36px;
+    text-overflow: ellipsis;
+}
+
+.course-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.course-head-img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.course-title {
+    font-size: 20px;
+}
+.course-like {
+    width: 20px;
+}
+
+.course-kind {
+    float: right;
+    border-radius: 10px;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+#new-course {
+    float: right;
+    margin-right: 90px;
+    color: white;
+    cursor: pointer;
+}
+
