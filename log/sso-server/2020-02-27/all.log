@@ -794,3 +794,15 @@ Caused by: java.net.ConnectException: Connection refused: no further information
 2020-02-27 17:25:26  INFO --- [Thread-17] com.nebula.mooc.ssoserver.config.GRpcConfig : UserService - RPC stop.
 2020-02-27 17:25:26  INFO --- [Thread-17] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
 2020-02-27 17:25:27  INFO --- [Thread-17] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2020-02-27 17:25:41  INFO --- [main] com.nebula.mooc.ssoserver.SsoServer : Starting SsoServer on LAPTOP-F916561V with PID 2420 (D:\code-other\NebulaMOOC\sso-server\target\classes started by 33035 in D:\code-other\NebulaMOOC)
+2020-02-27 17:25:41  INFO --- [main] com.nebula.mooc.ssoserver.SsoServer : The following profiles are active: core
+2020-02-27 17:25:42  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-02-27 17:25:42  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-02-27 17:25:42  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26ms. Found 0 repository interfaces.
+2020-02-27 17:25:44  INFO --- [main] org.springframework.aop.framework.CglibAopProxy : Unable to proxy interface-implementing method [public final io.grpc.ServerServiceDefinition com.nebula.mooc.core.service.UserServiceGrpc$UserServiceImplBase.bindService()] because it is marked as final: Consider using interface-based JDK proxies instead!
+2020-02-27 17:25:48  INFO --- [main] com.nebula.mooc.ssoserver.config.GRpcConfig : UserService - RPC start, listening on 15888
+2020-02-27 17:25:49  INFO --- [main] com.nebula.mooc.ssoserver.SsoServer : Started SsoServer in 9.347 seconds (JVM running for 12.493)
+2020-02-27 17:27:19  INFO --- [grpc-default-executor-0] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2020-02-27 17:27:20  INFO --- [grpc-default-executor-0] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2020-02-27 17:27:20  INFO --- [grpc-default-executor-0] com.nebula.mooc.ssoserver.config.ServiceLog : Service: UserService -> register, Cost: 373ms, Param: 3303594461@qq.com, Size: 66 bytes
+2020-02-27 17:28:02  INFO --- [grpc-default-executor-0] com.nebula.mooc.ssoserver.config.ServiceLog : Service: UserService -> login, Cost: 12755ms, Param: 3303594461@qq.com, Size: 60 bytes
