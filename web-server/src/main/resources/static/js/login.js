@@ -78,6 +78,7 @@ $('input[id="log_bt"]').click(function () {
                 document.cookie = "userId=" + data.data.id + ";";
                 document.cookie = "userName=" + data.data.nickName + ";";
                 document.cookie = "headUrl=" + data.data.headUrl + ";";
+                document.cookie = "token=" + data.data.token + ";";
                 window.location.href = "index.html";
 
 

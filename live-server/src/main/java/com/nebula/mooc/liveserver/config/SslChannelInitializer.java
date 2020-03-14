@@ -18,14 +18,10 @@ import javax.net.ssl.SSLEngine;
 @ChannelHandler.Sharable
 public class SslChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    @Autowired
-    private SslContext sslContext;
 
     @Override
     protected void initChannel(SocketChannel channel) {
-        SSLEngine engine = sslContext.newEngine(channel.alloc());
-        engine.setUseClientMode(false);
-        channel.pipeline().addFirst(new SslHandler(engine));
+
     }
 
 }

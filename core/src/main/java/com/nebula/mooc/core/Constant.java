@@ -16,6 +16,7 @@ public interface Constant {
      * 存放在浏览器Cookie中的关键字
      */
     String TOKEN = "TOKEN";
+    String UID = "userId";
 
     /**
      * 存放在浏览器UserInfo中的关键字

@@ -888,7 +888,7 @@ function getLikePost(json, ReturnFun) {
 function newLive(json, ReturnFun) {
     $.ajax({
         type: "POST",
-        url: "https://" + window.location.host + ":8443/live/newLive",
+        url: "http://" + window.location.host + ":8081/live/newLive",
         contentType: 'application/x-www-form-urlencoded;charset=utf-8',
         data: json,
         dataType: 'json',
@@ -907,7 +907,7 @@ function newLive(json, ReturnFun) {
 function getMyLive(ReturnFun) {
     $.ajax({
         type: "GET",
-        url: "https://" + window.location.host + ":8443/live/getMyLive",
+        url: "http://" + window.location.host + ":8081/live/getMyLive",
         contentType: 'application/x-www-form-urlencoded;charset=utf-8',
         data: {},
         dataType: 'json',
@@ -926,7 +926,7 @@ function getMyLive(ReturnFun) {
 function getLiveList(ReturnFun) {
     $.ajax({
         type: "GET",
-        url: "https://" + window.location.host + ":8443/live/getLiveList",
+        url: "http://" + window.location.host + ":8081/live/getLiveList",
         contentType: 'application/x-www-form-urlencoded;charset=utf-8',
         data: {},
         dataType: 'json',
@@ -945,7 +945,7 @@ function getLiveList(ReturnFun) {
 function getLive(json, ReturnFun) {
     $.ajax({
         type: "GET",
-        url: "https://" + window.location.host + ":8443/live/getLive",
+        url: "http://" + window.location.host + ":8081/live/getLive",
         contentType: 'application/x-www-form-urlencoded;charset=utf-8',
         data: json,
         dataType: 'json',

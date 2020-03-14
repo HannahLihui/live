@@ -41,6 +41,7 @@ public class UserController {
         if (token == null) return new Return(Constant.CLIENT_ERROR_CODE, "账号或密码错误，请重试！");
         //成功登陆
         UserInfo userInfo = userService.getUserInfo(token);
+        userInfo.setToken(token);
         CacheUtil.set(session, response, token, userInfo);
         codeService.clearImgCode(session);
         return new Return<>(userInfo);

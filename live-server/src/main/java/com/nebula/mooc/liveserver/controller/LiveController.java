@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping(value = "/live/")
@@ -47,10 +48,12 @@ public class LiveController {
     }
 
     @PostMapping(value = "newLive")
-    public Return newLive(HttpServletRequest request, HttpServletResponse response,
+    public Return newLive( HttpServletRequest request, HttpServletResponse response,
                           Live live) throws Exception {
         if (live.getTitle() == null || live.getTitle().trim().length() == 0) return Return.CLIENT_PARAM_ERROR;
-        String token = getToken(request);
+        HttpSession session = request.getSession();
+        String token = (String) session.getAttribute(Constant.TOKEN);
+        //String token = getToken(request);
         UserInfo userInfo = getUserInfo(token);
         if (userInfo == null) {
             response.sendError(401);
@@ -74,8 +77,13 @@ public class LiveController {
     }
 
     @GetMapping(value = "getMyLive")
-    public Return getMyLive(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Return getMyLive( HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));//处理跨域
+        response.setHeader("Access-Control-Allow-Credentials", "true");//表示是否允许发送Cookie
+
         String token = getToken(request);
+       // HttpSession session = request.getSession();
+       // String token = (String) session.getAttribute(Constant.TOKEN);
         UserInfo userInfo = getUserInfo(token);
         if (userInfo == null) {
             response.sendError(401);

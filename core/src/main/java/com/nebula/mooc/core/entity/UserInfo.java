@@ -6,6 +6,7 @@ package com.nebula.mooc.core.entity;
 
 import java.io.Serializable;
 
+
 public class UserInfo implements Serializable {
     public static final long serialVersionUID = 1L;
 
@@ -16,6 +17,11 @@ public class UserInfo implements Serializable {
     private String major = "";
     private int age = 0;
     private int sex = 0;
+    private String token;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public String getMajor() {
         return major;
@@ -23,6 +29,14 @@ public class UserInfo implements Serializable {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getToken() {
+        return major;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getHeadUrl() {
