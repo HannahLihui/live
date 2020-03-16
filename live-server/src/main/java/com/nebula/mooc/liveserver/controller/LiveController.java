@@ -51,9 +51,9 @@ public class LiveController {
     public Return newLive( HttpServletRequest request, HttpServletResponse response,
                           Live live) throws Exception {
         if (live.getTitle() == null || live.getTitle().trim().length() == 0) return Return.CLIENT_PARAM_ERROR;
-        HttpSession session = request.getSession();
-        String token = (String) session.getAttribute(Constant.TOKEN);
-        //String token = getToken(request);
+        //HttpSession session = request.getSession();
+        //String token = (String) session.getAttribute(Constant.TOKEN);
+        String token = getToken(request);
         UserInfo userInfo = getUserInfo(token);
         if (userInfo == null) {
             response.sendError(401);
