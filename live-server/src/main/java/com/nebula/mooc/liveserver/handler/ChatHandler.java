@@ -34,6 +34,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<ChatMessage.request
 
     /**
      * 清除XSS信息
+     *
      */
     private static String cleanMsg(String content) {
         return Jsoup.clean(content, whitelist);

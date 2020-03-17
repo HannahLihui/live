@@ -112,7 +112,7 @@ function loadplayer() {
 
 //连接弹幕服务器
 function webSocketConnect() {
-    var wsUri = "wss://" + window.location.hostname + ":9080/websocket";
+    var wsUri = "ws://" + window.location.hostname + ":9080/websocket";
     wordWeb = new WebSocket(wsUri);
     wordWeb.binaryType = "arraybuffer";
     wordWeb.onopen = function (ev) {
