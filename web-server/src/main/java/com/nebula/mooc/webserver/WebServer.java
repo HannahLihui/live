@@ -11,8 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan("com.nebula.mooc.webserver.dao")
+@MapperScan("com.nebula.mooc.webserver.dao.Devicemappers")//对应你的mapper路径，应为我们要用这个扫描它
+@MapperScan("com.nebula.mooc.webserver.pojo.Device")//当然以访万一User找不到
 @SpringBootApplication
 @EnableCaching
+
 public class WebServer {
 
     /**

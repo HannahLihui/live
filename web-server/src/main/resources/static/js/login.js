@@ -70,7 +70,7 @@ $('input[id="log_bt"]').click(function () {
         toastr.info('登录中...');
         Login(JsonData, function (data) {
             //ajax返回
-            if (data.code == 100) {
+           if (data.code == 100) {
                 //登录成功
                 toastr.success('登录成功');
                 //跳转操作
@@ -212,7 +212,7 @@ $('input[id="send_code"]').click(
         if (login == '') {
             toastr.warning('请输入您的账号');
             return false;
-        } else if (login.search(reg) == -1) {
+            } else if (login.search(reg) == -1) {
             toastr.warning('邮箱地址不正确');
             return false;
         } else if (!ifcheck) {
