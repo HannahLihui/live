@@ -1,0 +1,64 @@
+2020-03-17 17:28:59  INFO --- [main] com.nebula.mooc.webserver.WebServer : Starting WebServer on DESKTOP-TQKQGPS with PID 11908 (C:\Users\a1046\IdeaProjects\live\web-server\target\classes started by a1046 in C:\Users\a1046\IdeaProjects\live)
+2020-03-17 17:28:59  INFO --- [main] com.nebula.mooc.webserver.WebServer : The following profiles are active: core
+2020-03-17 17:29:00  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-03-17 17:29:00  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-03-17 17:29:00  INFO --- [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29ms. Found 0 repository interfaces.
+2020-03-17 17:29:01  INFO --- [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d253046c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-17 17:29:01  INFO --- [main] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker : Bean 'cacheConfig' of type [com.nebula.mooc.webserver.config.CacheConfig$$EnhancerBySpringCGLIB$$b0427a96] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-17 17:29:01  INFO --- [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 80 (http)
+2020-03-17 17:29:01  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-80"]
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-03-17 17:29:01  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-03-17 17:29:02  INFO --- [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2020-03-17 17:29:02  INFO --- [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 2172 ms
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.GRpcConfig : UserService - RPC inited.
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.FastDFSConfig : FastDFS - TrackerClient inited
+2020-03-17 17:29:02  INFO --- [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'executor'
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.BasicConfig : Add view resolver: html
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.BasicConfig : Add login interceptor: /api/**
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.BasicConfig : Add xss interceptor: /**
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.BasicConfig : Add welcome page: index.html
+2020-03-17 17:29:02  INFO --- [main] com.nebula.mooc.webserver.config.BasicConfig : Add resource handler: /** -> /static/**
+2020-03-17 17:29:03  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-80"]
+2020-03-17 17:29:03  INFO --- [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 80 (http) with context path ''
+2020-03-17 17:29:03  INFO --- [main] com.nebula.mooc.webserver.WebServer : Started WebServer in 4.347 seconds (JVM running for 8.464)
+2020-03-17 17:29:26  INFO --- [http-nio-80-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-17 17:29:26  INFO --- [http-nio-80-exec-2] org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2020-03-17 17:29:26  INFO --- [http-nio-80-exec-2] org.springframework.web.servlet.DispatcherServlet : Completed initialization in 9 ms
+2020-03-17 17:29:26  INFO --- [http-nio-80-exec-5] io.lettuce.core.EpollProvider : Starting without optional epoll library
+2020-03-17 17:29:26  INFO --- [http-nio-80-exec-5] io.lettuce.core.KqueueProvider : Starting without optional kqueue library
+2020-03-17 17:29:30 ERROR --- [http-nio-80-exec-5] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379] with root cause
+java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:327)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:340)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:665)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:612)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:529)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:491)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:905)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2020-03-17 17:29:30  INFO --- [http-nio-80-exec-5] com.nebula.mooc.webserver.config.ControllerLog : Path: /error, Method: GET, Cost: 7ms, Address: 0:0:0:0:0:0:0:1:33936
+2020-03-17 17:29:32 ERROR --- [http-nio-80-exec-6] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.connection.PoolException: Could not get a resource from the pool; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379] with root cause
+java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:779)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:327)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:340)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:665)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:612)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:529)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:491)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:905)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2020-03-17 17:29:32  INFO --- [http-nio-80-exec-6] com.nebula.mooc.webserver.config.ControllerLog : Path: /error, Method: GET, Cost: 1ms, Address: 0:0:0:0:0:0:0:1:33935
+2020-03-17 17:29:38  WARN --- [http-nio-80-exec-6] org.apache.catalina.util.SessionIdGeneratorBase : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [769] milliseconds.
+2020-03-17 17:29:38  INFO --- [http-nio-80-exec-6] com.nebula.mooc.webserver.config.ServiceLog : Service: CodeServiceImpl -> sendImgCode, Cost: 309ms
+2020-03-17 17:29:38  INFO --- [http-nio-80-exec-6] com.nebula.mooc.webserver.config.ControllerLog : Path: /sys/code/getImgCode, Method: GET, Cost: 315ms, Address: 0:0:0:0:0:0:0:1:33969
