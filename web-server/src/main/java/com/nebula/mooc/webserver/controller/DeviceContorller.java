@@ -1,6 +1,6 @@
-package logic.contorller;
-import logic.pojo.Device;
-import logic.service.Deviceservice;
+package com.nebula.mooc.webserver.controller;
+import com.nebula.mooc.webserver.pojo.DeviceLogic;
+import com.nebula.mooc.webserver.service.Deviceservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +17,9 @@ public class DeviceContorller {
 
     @GetMapping("all")
     public String all(Model model) {
-        List<Device> Devices = this.Deviceservice.selectUserByName();
-        model.addAttribute("Devices", Devices);
-        return "Devices";
+        List<DeviceLogic> DeviceLogic = this.Deviceservice.selectUserByName();
+        model.addAttribute("DeviceLogic", DeviceLogic);
+        return "DeviceLogic";
     }
 
 
@@ -43,7 +43,7 @@ public class DeviceContorller {
      * @CreateDate:
      */
     @RequestMapping("AddUser")
-    public ModelAndView AddUser(Device user) {
+    public ModelAndView AddUser(DeviceLogic user) {
         Deviceservice.add(user);
         ModelAndView mav = new ModelAndView("redirect:/all");
         return mav;

@@ -1,18 +1,19 @@
-package logic.service.serviceimpl;
-import logic.pojo.Device;
-import logic.mappers.Devicemappers;
-import logic.service.Deviceservice;
+package com.nebula.mooc.webserver.service.impl;
+import com.nebula.mooc.webserver.pojo.DeviceLogic;
+import com.nebula.mooc.webserver.dao.Devicemappers;
+import com.nebula.mooc.webserver.service.Deviceservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-@Service
+@Service("Deviceservice")
 public class  Deviceserviceimpl implements Deviceservice{
     @Autowired
     private Devicemappers devicemapper;
 
 
     @Override
-    public   List<Device> selectUserByName() {
+    public   List<DeviceLogic> selectUserByName() {
         return devicemapper.selectUserByName();
     }
 
@@ -22,8 +23,8 @@ public class  Deviceserviceimpl implements Deviceservice{
     }
 
     @Override
-    public int add(Device device) {
-        return devicemapper.add(device);
+    public int add(DeviceLogic DeviceLogic) {
+        return devicemapper.add(DeviceLogic);
     }
 
 }

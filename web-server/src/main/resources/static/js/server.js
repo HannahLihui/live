@@ -18,7 +18,6 @@ function getCookie(name) {
 
 $.ajaxSetup({
     complete: function (xhr, status) {
-        // 如果响应码是401，则需登陆
         if (xhr.status == 401) {
             var win = window;
             while (win != win.top) {
@@ -30,7 +29,6 @@ $.ajaxSetup({
                 win.location.href = "/login.html";
             }, 2000);
         }
-        // 如果响应码是403，则用户可能在进行xss
         else if (xhr.status == 403) {
             toastr.error("警告：存在非法操作！");
         }

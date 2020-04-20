@@ -1,6 +1,6 @@
-package logic.pojo;
+package com.nebula.mooc.webserver.pojo;
 
-public class Device {
+public class DeviceLogic {
     private Integer  Device_id;
     private String Device_name;
     private String Device_type;
@@ -89,7 +89,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" +
+        return "DeviceLogic{" +
                 "Device_id=" + Device_id +
                 ", Device_name='" + Device_name + '\'' +
                 ", Device_type=" + Device_type +
