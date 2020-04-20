@@ -1,0 +1,23 @@
+2020-03-06 20:05:09  INFO --- [main] com.nebula.mooc.liveserver.LiveServer : Starting LiveServer on DESKTOP-TQKQGPS with PID 12364 (C:\Users\a1046\IdeaProjects\live\live-server\target\classes started by a1046 in C:\Users\a1046\IdeaProjects\live)
+2020-03-06 20:05:09  INFO --- [main] com.nebula.mooc.liveserver.LiveServer : The following profiles are active: core
+2020-03-06 20:05:10  INFO --- [main] com.nebula.mooc.liveserver.config.SslConfig : Set callback port: 8080
+2020-03-06 20:05:10  INFO --- [main] com.nebula.mooc.liveserver.config.SslConfig : SSL support inited.
+2020-03-06 20:05:10  INFO --- [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8443 (https) 8080 (http)
+2020-03-06 20:05:10  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["https-openssl-nio-8443"]
+2020-03-06 20:05:10  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-03-06 20:05:10  INFO --- [main] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-03-06 20:05:11  INFO --- [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2020-03-06 20:05:11  INFO --- [main] org.springframework.web.context.ContextLoader : Root WebApplicationContext: initialization completed in 1702 ms
+2020-03-06 20:05:11  INFO --- [main] com.nebula.mooc.liveserver.config.GRpcConfig : UserService - RPC inited.
+2020-03-06 20:05:12  INFO --- [main] com.nebula.mooc.liveserver.config.BootstrapConfig : Bootstrap inited.
+2020-03-06 20:05:13  INFO --- [main] com.nebula.mooc.liveserver.core.Runner : Chat-Server start, listening on 9080
+2020-03-06 20:05:13  INFO --- [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-06 20:05:13  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["https-openssl-nio-8443"]
+2020-03-06 20:05:14  INFO --- [main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8080"]
+2020-03-06 20:05:14  INFO --- [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8443 (https) 8080 (http) with context path ''
+2020-03-06 20:05:14  INFO --- [main] com.nebula.mooc.liveserver.LiveServer : Started LiveServer in 5.841 seconds (JVM running for 7.896)

@@ -104,6 +104,13 @@
             <artifactId>thumbnailator</artifactId>
             <version>0.4.8</version>
         </dependency>
+        <!--tools.jar -->
+        <dependency>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+            <scope>system</scope>
+            <systemPath>C:/安全/android逆向/jdkx6417/lib/tools.jar</systemPath>
+        </dependency>
 
         <!-- 推荐系统使用 -->
         <dependency>
